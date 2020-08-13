@@ -2,9 +2,9 @@
 ;------------------- the second arg is attributed to rsi ----------------------;
 
 section     .text
-global      _ft_strcpy
+global      ft_strcpy
 ;------------------------------------------------------------------------------;
-_ft_strcpy:
+ft_strcpy:
     mov     rax, -1                 ; set rax to -1
     cmp		rsi, 0                  ; make sure src is not null
     je      _return                 ; if src is null, return

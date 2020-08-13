@@ -2,9 +2,9 @@
 ;------------------- the second arg is attributed to rsi ----------------------;
 
 section     .text
-global      _ft_strcmp
+global      ft_strcmp
 ;------------------------------------------------------------------------------;
-_ft_strcmp:
+ft_strcmp:
     mov     rax, -1                     ; set rax to -1
 ;------------------------------------------------------------------------------;
 _start:

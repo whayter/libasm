@@ -3,10 +3,10 @@
 ;------------------- the third arg is attributed to rdx -----------------------;
 
 section     .text
-global      _ft_read
+global      ft_read
 ;------------------------------------------------------------------------------;
-_ft_read:
-    mov     rax, 0x2000003              ; set rax to the read syscall number
+ft_read:
+    mov     rax, 0x00                   ; set rax to the read syscall number
     syscall
     jc       _error
     jmp      _return

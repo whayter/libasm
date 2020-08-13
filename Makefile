@@ -14,7 +14,8 @@ FLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -rf
 EXEC		=	a.out
 NA			=	nasm
-NA_FLAGS	=	-f macho64
+M_OUT		=	-f macho64
+L_OUT		=	-f elf64
 
 SRCS		=	$(addprefix $(SRC_DIR)/,$(SRC))
 OBJS		=	$(addprefix $(TMP_DIR)/,$(SRC:.s=.o))
@@ -23,12 +24,15 @@ all: 			$(NAME)
 
 $(TMP_DIR)/%.o:	$(SRC_DIR)/%.s
 	@mkdir -p $(TMP_DIR)
-	@($(NA) $(NA_FLAGS) -o $@ -s $<)
+	@($(NA) $(L_OUT) -o $@ -s $<)
 
 $(NAME):		$(OBJS)
 	@echo "Compiling..."
 	@(ar rcs $(NAME) $(OBJS))
 	@echo "Done."
+
+test:			$(NAME)
+	@(clang main.c $(TMP_DIR)/*.o)
 
 clean:
 	@echo "Cleaning..."
@@ -43,4 +47,4 @@ fclean:			clean
 
 re:	fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all test clean fclean re

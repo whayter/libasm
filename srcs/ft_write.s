@@ -3,10 +3,10 @@
 ;------------------- the third arg is attributed to rdx -----------------------;
 
 section     .text
-global      _ft_write
+global      ft_write
 ;------------------------------------------------------------------------------;
-_ft_write:
-    mov     rax, 0x2000004              ; set rax to the write syscall number
+ft_write:
+    mov     rax, 0x01                   ; set rax to the write syscall number
     syscall
     jc       _error
     jmp      _return
