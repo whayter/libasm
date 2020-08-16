@@ -25,18 +25,13 @@ ssize_t	ft_read(int fd, void *buf, size_t nbyte);
 char	*ft_strdup(const char *str);
 
 int     main(int ac, char **av)
-{
-    if (ac != 2)
-    {
-        printf("please provide a file path for the ft_read test\n");
-        return (0);
-    }
-    
+{    
     char *str0 = "";
     char *str1 = "hello";
     char *str2 = "welcome to europe";
     char *str3;
     char *str4;
+    char *str5 = NULL;
     char dst1[32];
     char dst2[32];
     int ret;
@@ -122,12 +117,18 @@ int     main(int ac, char **av)
     int fd2 = open(av[1], O_RDONLY);
     char buf1[64];
     char buf2[64];
+
+    errno = 0;
     int r1 = read(fd1, buf1, 64);
-    int r2 = read(fd2, buf2, 64);
     buf1[r1] = '\0';
-    buf2[r2] = '\0';
     printf("   read : %s (ret = %d)\n", buf1, r1);
+    printf("errno : %d\n", errno);
+    
+    errno = 0;
+    int r2 = ft_read(fd2, buf2, 64);
+    buf2[r2] = '\0';
 	printf("ft_read : %s (ret = %d)\n", buf2, r2);
+    printf("errno : %d\n", errno);
     close(fd1);
     close(fd2);
 
